@@ -1,0 +1,26 @@
+[versions]
+spring-boot = '3.0.5'
+spring-dependency-management = '1.1.0'
+lombok = '1.18.26'
+junit = '5.8.1'
+postgresql = '42.6.0'
+eureka = '4.0.1'
+spring-cloud-dependencies = '2022.0.2'
+openfeign = '4.0.2'
+
+[libraries]
+spring-boot-starter-web = {module = 'org.springframework.boot:spring-boot-starter-web'}
+spring-boot-starter-test = {module = 'org.springframework.boot:spring-boot-starter-test'}
+spring-boot-starter-data-jpa = {module = 'org.springframework.boot:spring-boot-starter-data-jpa'}
+lombok = {module = 'org.projectlombok:lombok', version.ref = 'lombok'}
+junit-jupiter-api = {module = 'org.junit.jupiter:junit-jupiter-api', version.ref = 'junit'}
+junit-jupiter-engine = {module = 'org.junit.jupiter:junit-jupiter-engine', version.ref = 'junit'}
+postgresql = {module = 'org.postgresql:postgresql', version.ref = 'postgresql'}
+spring-cloud-starter-netflix-eureka-server = {module = 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server', version.ref = 'eureka'}
+spring-cloud-starter-netflix-eureka-client = {module = 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client', version.ref = 'eureka'}
+spring-cloud-dependencies = {module = 'org.springframework.cloud:spring-cloud-dependencies', version.ref = 'spring-cloud-dependencies'}
+spring-cloud-starter-openfeign = {module = 'org.springframework.cloud:spring-cloud-starter-openfeign', version.ref = 'openfeign'}
+
+[plugins]
+spring-boot = {id = 'org.springframework.boot', version.ref = 'spring-boot'}
+spring-dependency-management = {id = 'io.spring.dependency-management', version.ref = 'spring-dependency-management'}

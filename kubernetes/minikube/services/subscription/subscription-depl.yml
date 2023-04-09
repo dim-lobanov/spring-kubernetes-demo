@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subscription-deployment
+  labels:
+    app: subscription
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: subscription
+      labels:
+        app: subscription
+    spec:
+      containers:
+        - name: subscription
+          image: spring-kubernetes-demo/subscription:latest
+          imagePullPolicy: Never # because we want to use a local image
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: kube
+  selector:
+    matchLabels:
+      app: subscription
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: subscription
+spec:
+  selector:
+    app: subscription
+  ports:
+    - port: 8081
+      targetPort: 8081
+  type: NodePort

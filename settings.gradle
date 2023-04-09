@@ -1,0 +1,5 @@
+rootProject.name = 'spring-kubernetes-demo'
+include 'customer'
+include 'subscription'
+include 'api'
+include 'eureka-server'

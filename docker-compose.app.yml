@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  customer:
+    container_name: customer
+    image: spring-kubernetes-demo/customer:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - spring
+    environment:
+      - "SPRING_PROFILES_ACTIVE=docker"
+
+  subscription:
+    container_name: subscription
+    image: spring-kubernetes-demo/subscription:latest
+    ports:
+      - "8081:8081"
+    networks:
+      - spring
+    environment:
+      - "SPRING_PROFILES_ACTIVE=docker"
+
+networks:
+  spring:
+    driver: bridge

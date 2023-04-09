@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres-stateful-set
+  labels:
+    app: postgres
+spec:
+  serviceName: postgres-service
+  replicas: 1
+  template:
+    metadata:
+      name: postgres
+      labels:
+        app: postgres
+    spec:
+      volumes:
+        - name: postgres-pv-volume
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim
+      containers:
+        - name: postgres
+          image: postgres:latest
+          ports:
+            - containerPort: 5431
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: "/var/lib/postgresql/data"
+              name: postgres-pv-volume
+          envFrom:
+            - configMapRef:
+                name: postgres-configmap
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: postgres
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+    - port: 5431        # exposing Service port
+      targetPort: 5431  # Container port of Deployment, should match 'containerPort'
+  type: ClusterIP
