@@ -1,4 +1,4 @@
-# Spring/Docker/Kubernetes microservices template project
+# Spring/Docker/Kubernetes microservices example project
 ..Because I need some template.
 
 ## Local
